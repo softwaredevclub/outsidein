@@ -2,10 +2,11 @@
 <widget id="com.ionicframework.outsidein834788" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>outsidein</name>
   <description>
-        An Ionic Framework and Cordova project.
+        In which the good people share real-time bits of advice based on their real-time experiences at OutsideLands.
+        Using collective knowledge to make the festival an even better time for all!
     </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+  <author email="nkang@transplantnet.org" href="https://github.com/softwaredevclub/outsidein">
+      Nicholas Egan, Julia Lu, Nikki Kang and Peter Baumbacher
     </author>
   <content src="index.html"/>
   <access origin="*"/>
