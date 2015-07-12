@@ -152,7 +152,7 @@ angular.module('starter.controllers', [])
 .controller('SavedCtrl', function($scope, $rootScope) {
 
 
-
+    $scope.doRefresh = function(){};
     $scope.unsaveQuestion = function(question){}
     $scope.viewAnswers = function(question){}
 })
