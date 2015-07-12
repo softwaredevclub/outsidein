@@ -77,6 +77,7 @@ angular.module('starter.controllers', [])
                     question.userName = user.name
                     question.up = window.localStorage[question.userKey + question.questionKey + 'up'] || false
                     question.down = window.localStorage[question.userKey + question.questionKey + 'down'] || false
+                    question.showAnswers = false
 
                     if(!question.answers)
                         question.answers = []
@@ -124,6 +125,7 @@ angular.module('starter.controllers', [])
     }
     $scope.viewAnswers = function(question){
         console.log('VIEW!')
+        question.showAnswers = !question.showAnswers
     }
     $scope.voteUp = function(question){
         if(window.localStorage[question.userKey + question.questionKey + 'up'] || window.localStorage[question.userKey + question.questionKey + 'down'])
