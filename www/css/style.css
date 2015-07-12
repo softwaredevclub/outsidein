@@ -4,3 +4,12 @@ p.home-list-p {
   white-space: normal;
   float: left;
 }
+
+.scroll-content {
+   background: url(../img/background.png);
+   background-repeat: no-repeat;
+   background-size: contain;
+   background-size: 100% 100%;
+
+
+ }
