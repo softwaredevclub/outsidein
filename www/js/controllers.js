@@ -53,7 +53,14 @@ angular.module('starter.controllers', [])
 
 })
 .controller('PostCtrl', function($scope, $rootScope) {
-
+    // Called when the form is submitted
+    $scope.createPost = function(task) {
+      $scope.tasks.push({
+        content: post.content
+      });
+      $scope.taskModal.hide();
+      task.title = "";
+    };
 })
 .controller('LoginCtrl', function($scope, $rootScope) {
     console.log('login')
