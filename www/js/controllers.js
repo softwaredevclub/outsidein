@@ -73,6 +73,8 @@ angular.module('starter.controllers', [])
                     question.userKey = userKey
                     question.questionKey = questionKey
                     question.userName = user.name
+                    question.up = window.localStorage[question.userKey + question.questionKey + 'up'] || false
+                    question.down = window.localStorage[question.userKey + question.questionKey + 'down'] || false
 
                     if(!question.answers)
                         question.answers = []
@@ -123,20 +125,20 @@ angular.module('starter.controllers', [])
         console.log('VIEW!')
     }
     $scope.voteUp = function(question){
-        if(window.localStorage[question.userKey + question.questionKey])
+        if(window.localStorage[question.userKey + question.questionKey + 'up'] || window.localStorage[question.userKey + question.questionKey + 'down'])
             return
         getQuestionRef(question).update({
             "score": question.score + 1
         })
-        window.localStorage[question.userKey + question.questionKey] = true
+        window.localStorage[question.userKey + question.questionKey + 'up'] = true
     }
     $scope.voteDown = function(question){
-        if(window.localStorage[question.userKey + question.questionKey])
+        if(window.localStorage[question.userKey + question.questionKey + 'down'] || window.localStorage[question.userKey + question.questionKey + 'up'])
             return
         getQuestionRef(question).update({
             "score": question.score - 1
         })
-        window.localStorage[question.userKey + question.questionKey] = true
+        window.localStorage[question.userKey + question.questionKey + 'down'] = true
     }
 
     // document.addEventListener("deviceready", function() {
