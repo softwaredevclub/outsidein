@@ -70,6 +70,8 @@ angular.module('starter.controllers', [])
                         continue
 
                     var question = user.questions[key2]
+                    if(!question.answers)
+                        question.answers = []
                     questions.push(question)
                 }
             }

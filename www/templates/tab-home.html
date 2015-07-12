@@ -24,12 +24,12 @@
           </div>
           <div class="col col-75 col-offset-7 col-center no-padding">
             <p style="padding-bottom: 3%" class = "home-list-p"><strong>{{question.content}}</strong></p>
-            <p style="color: #c54e51">3 answers</p>
+            <p style="color: #c54e51">{{question.answers.length}} answers</p>
           </div>
           <div class="col no-padding">
 
             <button style="display: block; margin: 0 auto;" class="button button-icon icon ion-chevron-up"></button>
-            <div class="score">25</div>
+            <div class="score">{{question.score}}</div>
             <button style="display: block; margin: 0 auto;" class="button button-icon arrow icon ion-chevron-down"></button>
           </div>
       </div>
