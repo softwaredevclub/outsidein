@@ -9,7 +9,7 @@ p.home-list-p {
    background-size: contain;
    background-size: 100% 100%;
 
-
+   foreground: url(.../img/topbackground.png);
  }
 
 
