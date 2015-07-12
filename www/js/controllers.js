@@ -10,7 +10,7 @@ angular.module('starter.controllers', [])
     //
     //$scope.$on('$ionicView.enter', function(e) {
     //});
-
+    console.log('hi')
     $scope.chats = Chats.all();
     $scope.remove = function(chat) {
         Chats.remove(chat);
@@ -25,4 +25,21 @@ angular.module('starter.controllers', [])
     $scope.settings = {
         enableFriends: true
     };
-});
+})
+
+.controller('HomeCtrl', function($scope, $rootScope) {
+    console.log('hi')
+    if(!$rootScope.user) {
+        
+    }
+})
+
+.controller('SavedCtrl', function($scope, $rootScope) {
+
+})
+.controller('ReplyCtrl', function($scope, $rootScope) {
+
+})
+.controller('LoginCtrl', function($scope, $rootScope) {
+    console.log('login')
+})
