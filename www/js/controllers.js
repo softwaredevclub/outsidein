@@ -75,6 +75,10 @@ angular.module('starter.controllers', [])
                     question.userName = user.name
                     if(!question.answers)
                         question.answers = []
+                    if(!window.localStorage['saved'] || window.localStorage['saved'].indexOf(questionKey) == -1)
+                        question.star = 'ion-ios-star-outline'
+                    else
+                        question.star = 'ion-ios-star'
                     questions.push(question)
                 }
             }
@@ -93,20 +97,31 @@ angular.module('starter.controllers', [])
 
     //TODO: FOR NICHOLAS
     $scope.saveQuestion = function(question){
-        console.log('SAVE!', question)
 
         if(!window.localStorage['saved'])
             window.localStorage['saved'] = "[]"
 
-        var saved = JSON.parse(window.localStorage['saved'])
-        saved.push(question)
-        window.localStorage['saved'] = JSON.stringify(saved)
+        if(window.localStorage['saved'].indexOf(question.questionKey) == -1) {
+            var saved = JSON.parse(window.localStorage['saved'])
+            saved.push(question)
+            window.localStorage['saved'] = JSON.stringify(saved)
+            question.star = 'ion-ios-star'
+        } else {
+            var saved = JSON.parse(window.localStorage['saved'])
+            for(var i=0;i<saved.length;i++) {
+                if(saved[i].questionKey == question.questionKey) {
+                    saved.splice(i, 1)
+                    break
+                }
+            }
+            window.localStorage['saved'] = JSON.stringify(saved)
+            question.star = 'ion-ios-star-outline'
+        }
     }
     $scope.viewAnswers = function(question){
         console.log('VIEW!')
     }
     $scope.voteUp = function(question){
-        console.log('UP!')
         if(window.localStorage[question.userKey + question.questionKey])
             return
         getQuestionRef(question).update({
@@ -115,7 +130,6 @@ angular.module('starter.controllers', [])
         window.localStorage[question.userKey + question.questionKey] = true
     }
     $scope.voteDown = function(question){
-        console.log('DOWN!')
         if(window.localStorage[question.userKey + question.questionKey])
             return
         getQuestionRef(question).update({
@@ -157,6 +171,8 @@ angular.module('starter.controllers', [])
 
 
 .controller('SavedCtrl', function($scope, $rootScope) {
+    if(!window.localStorage['saved'])
+        window.localStorage['saved'] = '[]'
     $scope.questions = JSON.parse(window.localStorage['saved']) || []
 
     $scope.unsaveQuestion = function(question){
