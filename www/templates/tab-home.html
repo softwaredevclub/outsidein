@@ -45,18 +45,28 @@
       </form>
 
       <div class="row no-padding answers" ng-show="question.showAnswers" ng-repeat="answer in question.answers">
-        <div class="col col-7 col-center no-padding">
-        </div>
-        <div class="col col-75 col-offset-7 col-center no-padding">
-          <p style="padding-bottom: 3%" class = "home-list-p"><strong>{{answer.content}}</strong></p>
-
-          <p style="color: #c54e51"> {{answer.user}} </p>
-        </div>
         <div class="col no-padding">
+            <div class="row no-padding">
+                <div class="col col-7 col-center no-padding">
+                </div>
+                <div class="col col-75 col-offset-7 col-center no-padding">
+                  <p style="padding-bottom: 3%" class = "home-list-p"><strong>{{answer.content}}</strong></p>
 
-          <button style="display: block; margin: 0 auto;" class="button button-icon icon ion-arrow-graph-up-right" ng-click="voteUpAnswer(question, answer)" ng-class="{green: answer.up}"></button>
-          <div class="score-a">{{answer.score}}</div>
-          <button style="display: block; margin: 0 auto;" class="button button-icon icon ion-arrow-graph-down-left" ng-click="voteUpAnswer(question, answer)" ng-class="{red: question.down}"></button>
+                  <p style="color: #c54e51"> {{answer.user}} </p>
+                </div>
+                <div class="col no-padding">
+
+                  <button style="display: block; margin: 0 auto;" class="button button-icon icon ion-arrow-graph-up-right" ng-click="voteUpAnswer(question, answer)" ng-class="{green: answer.up}"></button>
+                  <div class="score-a">{{answer.score}}</div>
+                  <button style="display: block; margin: 0 auto;" class="button button-icon icon ion-arrow-graph-down-left" ng-click="voteUpAnswer(question, answer)" ng-class="{red: question.down}"></button>
+                </div>
+            </div>
+            <div class="row no-padding">
+                <div class="col col-7 col-center no-padding"></div>
+                <div class="col col-7 no-padding">
+                    <img ng-src="img/weather.png" alt="WeatherAPI" ng-show="answer.weather" />
+                </div>
+            </div>
         </div>
     </div>
       </ion-item>
