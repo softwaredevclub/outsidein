@@ -150,6 +150,10 @@ angular.module('starter.controllers', [])
 
 .controller('SavedCtrl', function($scope, $rootScope) {
 
+
+
+    $scope.unsaveQuestion = function(question){}
+    $scope.viewAnswers = function(question){}
 })
 .controller('ReplyCtrl', function($scope, $rootScope) {
 
