@@ -52,6 +52,9 @@ angular.module('starter.controllers', [])
 .controller('ReplyCtrl', function($scope, $rootScope) {
 
 })
+.controller('PostCtrl', function($scope, $rootScope) {
+
+})
 .controller('LoginCtrl', function($scope, $rootScope) {
     console.log('login')
 })
