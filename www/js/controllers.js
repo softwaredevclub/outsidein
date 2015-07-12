@@ -29,7 +29,6 @@ angular.module('starter.controllers', [])
 
 .controller('HomeCtrl', function($scope, $rootScope, $firebaseObject, $firebaseAuth) {
     var ref = new Firebase('https://outside-in.firebaseio.com/')
-    $rootScope.data = $firebaseObject(ref)
 
     var auth = $firebaseAuth(ref);
     // login with Facebook
