@@ -72,6 +72,7 @@ angular.module('starter.controllers', [])
                     var question = user.questions[questionKey]
                     question.userKey = userKey
                     question.questionKey = questionKey
+                    question.userName = user.name
                     if(!question.answers)
                         question.answers = []
                     questions.push(question)
