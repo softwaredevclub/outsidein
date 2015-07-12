@@ -78,9 +78,17 @@ angular.module('starter.controllers', [])
 
             console.log(questions)
 
+
+
             $scope.questions = questions
         })
     }
+
+    //TODO: FOR NICHOLAS
+    $scope.saveQuestion = function(question){}
+    $scope.viewAnswers = function(question){}
+    $scope.voteUP = function(question){}
+    $scope.voteDown = function(question){}
 
     // document.addEventListener("deviceready", function() {
         if(!ref.getAuth()) {
