@@ -36,7 +36,7 @@
           </div>
       </div>
       <form ng-submit="createAnswer(answer)">
-        <div class="row no-padding answers" ng-class="{hidden: !question.showAnswers}">
+        <div class="row no-padding answers" ng-show="question.showAnswer">
           <label class="item item-input" style="width:90%; float:left">
             <input type="text" placeholder="Submit an answer" ng-model="answer.content">
           </label>
@@ -44,7 +44,7 @@
         </div>
       </form>
 
-      <div class="row no-padding answers" ng-class="{hidden: !question.showAnswers}" ng-repeat="answer in question.answers">
+      <div class="row no-padding answers" ng-show="question.showAnswers" ng-repeat="answer in question.answers">
         <div class="col col-7 col-center no-padding">
         </div>
         <div class="col col-75 col-offset-7 col-center no-padding">

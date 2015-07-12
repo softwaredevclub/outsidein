@@ -78,7 +78,7 @@ angular.module('starter.controllers', [])
                     question.userName = user.name
                     question.up = window.localStorage[question.userKey + question.questionKey + 'up'] || false
                     question.down = window.localStorage[question.userKey + question.questionKey + 'down'] || false
-                    question.showAnswers = false
+                    question.showAnswers = (window.localStorage['viewing'] == 'feed' + question.questionKey) || false
                     question.hidden = false
 
                     if(!question.answers)
@@ -155,9 +155,13 @@ angular.module('starter.controllers', [])
         }
     }
     $scope.viewAnswers = function(question){
-        console.log('VIEW!')
+        console.log('VIEW!', question)
+        window.localStorage['viewing'] = 'feed' + question.questionKey
+
         for (i in $scope.questions) {
-          $scope.questions[i].showAnswers = false;
+            if($scope.questions[i].questionKey == question.questionKey)
+                continue
+            $scope.questions[i].showAnswers = false;
         }
         question.showAnswers = !question.showAnswers
     }
@@ -189,6 +193,7 @@ angular.module('starter.controllers', [])
         })
         answer.up = true
         window.localStorage[question.questionKey + answer.answerKey + 'up'] = true
+        question.showAnswers = true
     }
     $scope.voteDownAnswer = function(question, answer){
         if(window.localStorage[question.questionKey + answer.answerKey + 'up'] || window.localStorage[question.questionKey + answer.questionKey + 'down'])
@@ -198,6 +203,7 @@ angular.module('starter.controllers', [])
         })
         answer.down = true
         window.localStorage[question.questionKey + answer.answerKey + 'down'] = true
+        question.showAnswers = true
     }
 
     var loginStuff = function() {
