@@ -70,15 +70,25 @@ angular.module('starter.controllers', [])
                         continue
 
                     var question = user.questions[key2]
+                    if(!question.answers)
+                        question.answers = []
                     questions.push(question)
                 }
             }
 
             console.log(questions)
 
+
+
             $scope.questions = questions
         })
     }
+
+    //TODO: FOR NICHOLAS
+    $scope.saveQuestion = function(question){}
+    $scope.viewAnswers = function(question){}
+    $scope.voteUP = function(question){}
+    $scope.voteDown = function(question){}
 
     // document.addEventListener("deviceready", function() {
         if(!ref.getAuth()) {
