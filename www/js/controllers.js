@@ -38,9 +38,7 @@ angular.module('starter.controllers', [])
     var setFirebaseThing = function(authData) {
         var user = ref.child('/users/' + authData.uid)
         user.on('value', function(snapshot) {
-            console.log('there')
             if(snapshot.val() === null) {
-                console.log('here')
                 user.set({
                     name: authData.facebook.displayName,
                     picture: authData.facebook.cachedUserProfile.picture.data.url
@@ -63,6 +61,7 @@ angular.module('starter.controllers', [])
                     console.log(authData)
                     $scope.name = authData.facebook.displayName
                     $rootScope.uid = authData.uid
+                    window.localStorage['uid'] = authData.uid
 
                     setFirebaseThing(authData)
                 }
@@ -73,6 +72,7 @@ angular.module('starter.controllers', [])
             authData = ref.getAuth()
 
             $rootScope.uid = authData.uid
+            window.localStorage['uid'] = authData.uid
 
             setFirebaseThing(authData)
         }
@@ -87,9 +87,10 @@ angular.module('starter.controllers', [])
 
 })
 .controller('PostCtrl', function($scope, $rootScope, $firebaseObject) {
+    if(!$rootScope.uid)
+        $rootScope.uid = window.localStorage['uid']
 
-    // Called when the form is submitted
-    var ref = new Firebase('https://outside-in.firebaseio.com/users/' + $rootScope.uid)
+    var ref = new Firebase('https://outside-in.firebaseio.com/users/' + $rootScope.uid + '/questions')
 
     $scope.createPost = function(post) {
         var post = {
@@ -98,8 +99,9 @@ angular.module('starter.controllers', [])
             score: 0,
             timestamp: Date.now()
         }
-        var content = post.content
+        ref.push(post)
 
+        $scope.post.content = ""
     }
 
     // var qRef = ref.child("questions");
