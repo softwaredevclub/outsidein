@@ -81,7 +81,7 @@ angular.module('starter.controllers', [])
                     question.hidden = false
 
                     if(!question.answers)
-                        question.answers = []
+                        question.answers = {}
                     if(!window.localStorage['saved'] || window.localStorage['saved'].indexOf(questionKey) == -1)
                         question.star = 'ion-ios-star-outline'
                     else
@@ -148,6 +148,8 @@ angular.module('starter.controllers', [])
         window.localStorage[question.userKey + question.questionKey + 'down'] = true
         $state.go($state.current, {}, {reload: true})
     }
+    $scope.voteUpAnswer = function(answer){}
+    $scope.voteDownAnswer = function(answer){}
 
     // document.addEventListener("deviceready", function() {
         if(!ref.getAuth()) {

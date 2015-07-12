@@ -27,7 +27,9 @@ p.home-list-p {
   font-weight: bold;
 }
 .score-a {
+  text-align: center;
   font-size: 110%;
+  font-weight: bold;
 }
 .lighten{
   background-color: rgba(0,0,0,0);
