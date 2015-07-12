@@ -1,3 +1,22 @@
-<label class="item item-input">
-    <textarea placeholder="Text"></textarea>
-  </label>
+<body>
+<p style="margin: 25%" />
+<h1 class="text-center" style="color: #c54e51; font-size: 150px;">?</h2>
+  <!-- Should probably put some fancily styled guidelines here -->
+
+<form ng-submit="createPost(post)">
+  <div class="list">
+    <h5>Enter your question below.</h5>
+    <label class="item item-input">
+
+      <textarea rows="2" maxlength="140" placeholder="140 characters max." ng-model="post.content">
+      </textarea>
+    </label>
+  </div>
+    <button type="submit" class="button button-full button-positive">Submit Question</button>
+</form>
+
+<script id="new-post.html" type="text/ng-template">
+
+</script>
+
+</body>
