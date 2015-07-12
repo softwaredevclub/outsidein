@@ -94,6 +94,13 @@ angular.module('starter.controllers', [])
     //TODO: FOR NICHOLAS
     $scope.saveQuestion = function(question){
         console.log('SAVE!', question)
+
+        if(!window.localStorage['saved'])
+            window.localStorage['saved'] = "[]"
+
+        var saved = JSON.parse(window.localStorage['saved'])
+        saved.push(question)
+        window.localStorage['saved'] = JSON.stringify(saved)
     }
     $scope.viewAnswers = function(question){
         console.log('VIEW!')
@@ -150,10 +157,13 @@ angular.module('starter.controllers', [])
 
 
 .controller('SavedCtrl', function($scope, $rootScope) {
+    $scope.questions = JSON.parse(window.localStorage['saved']) || []
 
-
-
-    $scope.unsaveQuestion = function(question){}
+    $scope.unsaveQuestion = function(question){
+        window.localStorage['saved'] = window.localStorage['saved'].replace(JSON.stringify(question) + ',', '')
+        window.localStorage['saved'] = window.localStorage['saved'].replace(JSON.stringify(question), '')
+        $scope.questions = JSON.parse(window.localStorage['saved'])
+    }
     $scope.viewAnswers = function(question){}
 })
 .controller('ReplyCtrl', function($scope, $rootScope) {
