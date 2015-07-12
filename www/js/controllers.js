@@ -73,8 +73,12 @@ angular.module('starter.controllers', [])
                     question.userKey = userKey
                     question.questionKey = questionKey
                     question.userName = user.name
-                    if(!question.answers)
-                        question.answers = []
+
+                    //if question doesn't have any answers, set answers to empty array
+                    if(!question.answers) {
+                        question.answers = [] }
+
+
                     questions.push(question)
                 }
             }
