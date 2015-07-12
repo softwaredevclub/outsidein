@@ -1,1 +1,6 @@
 /* Empty. Add your own CSS if you like */
+p.home-list-p {
+  width: 75%;
+  white-space: normal;
+  float: left;
+}
