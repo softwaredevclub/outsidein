@@ -62,7 +62,7 @@ angular.module('starter.controllers', [])
                 } else {
                     console.log(authData)
                     $scope.name = authData.facebook.displayName
-                    $rootScope.authId = authData.uid
+                    $rootScope.uid = authData.uid
 
                     setFirebaseThing(authData)
                 }
@@ -71,6 +71,8 @@ angular.module('starter.controllers', [])
             console.log(ref.getAuth())
             $scope.name = ref.getAuth().facebook.displayName
             authData = ref.getAuth()
+
+            $rootScope.uid = authData.uid
 
             setFirebaseThing(authData)
         }
@@ -84,36 +86,47 @@ angular.module('starter.controllers', [])
 .controller('ReplyCtrl', function($scope, $rootScope) {
 
 })
-.controller('PostCtrl', function($scope, $rootScope) {
+.controller('PostCtrl', function($scope, $rootScope, $firebaseObject) {
+
     // Called when the form is submitted
-    /* Nikki's shitty writing code below.
-var ref = new Firebase('https://outside-in.firebaseio.com')
-var qRef = ref.child("questions");
-qRef.set({
-alanisawesome: {
-date_of_birth: "June 23, 1912",
-full_name: "Alan Turing"
-},
-gracehop: {
-date_of_birth: "December 9, 1906",
-full_name: "Grace Hopper"
-}
-});
-var tstamp = Date.now();
+    var ref = new Firebase('https://outside-in.firebaseio.com/users/' + $rootScope.uid)
+
     $scope.createPost = function(post) {
-      $scope.tasks.push({
-        content: post.content
-        sticky:  false
-        uid: userID
-        timestamp: tstamp //convert this to readable date when presenting to user
-        score: 0
-      });
-      $scope.taskModal.hide();
-      task.title = "";
-    };
+        var post = {
+            content: post.content,
+            sticky: false,
+            score: 0,
+            timestamp: Date.now()
+        }
+        var content = post.content
+
+    }
+
+    // var qRef = ref.child("questions");
+    // qRef.set({
+    // alanisawesome: {
+    // date_of_birth: "June 23, 1912",
+    // full_name: "Alan Turing"
+    // },
+    // gracehop: {
+    // date_of_birth: "December 9, 1906",
+    // full_name: "Grace Hopper"
+    // }
+    // });
+    // var tstamp = Date.now();
+    // $scope.createPost = function(post) {
+    //   $scope.tasks.push({
+    //     content: post.content
+    //     sticky:  false
+    //     uid: userID
+    //     timestamp: tstamp //convert this to readable date when presenting to user
+    //     score: 0
+    //   });
+    //   $scope.taskModal.hide();
+    //   task.title = "";
+    // };
 })
 
-*/
 .controller('LoginCtrl', function($scope, $rootScope) {
     console.log('login')
 })
