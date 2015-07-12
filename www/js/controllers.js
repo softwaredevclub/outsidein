@@ -30,9 +30,10 @@ angular.module('starter.controllers', [])
 .controller('HomeCtrl', function($scope, $rootScope) {
     console.log('hi')
     if(!$rootScope.user) {
-        
+
     }
 })
+
 
 .controller('SavedCtrl', function($scope, $rootScope) {
 
