@@ -26,12 +26,11 @@
           <div class="col col-75 col-offset-7 col-center no-padding" ng-click="viewAnswers(question)">
             <p style="padding-bottom: 3%" class = "home-list-p"><strong>{{question.content}}</strong></p>
 
-            <p style="color: #c54e51">{{question.userName}} | <strong>{{question.answers.length}} answers</strong> <img src="img/arrow.png" style="position: relative; top: 3.25px" /> </p>
+            <p style="color: #c54e51">{{question.userName}} | <strong>{{question.answers.keys.length}} answers</strong> <img src="img/arrow.png" style="position: relative; top: 3.25px" /> </p>
           </div>
           <div class="col no-padding">
 
-            <button style="display: block; margin: 0 auto;" class="button button-icon icon ion-chevron-up" ng-click="voteUp(question)" ng-class="{green: question.up}"
-            ></button>
+            <button style="display: block; margin: 0 auto;" class="button button-icon icon ion-chevron-up" ng-click="voteUp(question)" ng-class="{green: question.up}"></button>
             <div class="score">{{question.score}}</div>
             <button style="display: block; margin: 0 auto;" class="button button-icon arrow icon ion-chevron-down" ng-click="voteDown(question)" ng-class="{red: question.down}"></button>
           </div>
@@ -41,23 +40,23 @@
           <label class="item item-input" style="width:90%; float:left">
             <input type="text" placeholder="Submit an answer" ng-model="answer.content">
           </label>
-          <button type="submit" class="button blue">Done</button>
+          <button type="submit" class="button blue" ng-click="saveAnswer(question, answer)">Done</button>
         </div>
       </form>
 
-      <div class="row no-padding answers" ng-class="{hidden: !question.showAnswers}">
+      <div class="row no-padding answers" ng-class="{hidden: !question.showAnswers}" ng-repeat="answer in question.answers">
         <div class="col col-7 col-center no-padding">
         </div>
         <div class="col col-75 col-offset-7 col-center no-padding">
           <p style="padding-bottom: 3%" class = "home-list-p"><strong>{{answer.content}}</strong></p>
 
-          <p style="color: #c54e51"> {{answer.userName}} </p>
+          <p style="color: #c54e51"> {{answer.user}} </p>
         </div>
         <div class="col no-padding">
 
-          <button style="display: block; margin: 0 auto;" class="button button-icon icon ion-chevron-up" ng-click="voteUp(answer)"></button>
+          <button style="display: block; margin: 0 auto;" class="button button-icon icon ion-chevron-up" ng-click="voteUpAnswer(answer)" ng-class="{green: answer.up}"></button>
           <div class="score-a">{{answer.score}}</div>
-          <button style="display: block; margin: 0 auto;" class="button button-icon icon ion-chevron-down" ng-click="voteDown(answer)"></button>
+          <button style="display: block; margin: 0 auto;" class="button button-icon icon ion-chevron-down" ng-click="voteDownAnswer(answer)" ng-class="{red: question.down}"></button>
         </div>
     </div>
       </ion-item>
