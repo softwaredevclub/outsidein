@@ -35,6 +35,23 @@ angular.module('starter.controllers', [])
     // login with Facebook
     $scope.name = ""
 
+    var setFirebaseThing = function(authData) {
+        var user = ref.child('/users/' + authData.uid)
+        user.on('value', function(snapshot) {
+            console.log('there')
+            if(snapshot.val() === null) {
+                console.log('here')
+                user.set({
+                    name: authData.facebook.displayName,
+                    picture: authData.facebook.cachedUserProfile.picture.data.url
+                })
+
+            } else {
+                var retrieveUser = snapshot.val();
+            }
+        })
+    }
+
     // document.addEventListener("deviceready", function() {
         if(!ref.getAuth()) {
             console.log('not logged in')
@@ -45,16 +62,19 @@ angular.module('starter.controllers', [])
                 } else {
                     console.log(authData)
                     $scope.name = authData.facebook.displayName
-                    // $scope.$apply()
+                    $rootScope.authId = authData.uid
+
+                    setFirebaseThing(authData)
                 }
             })
         } else {
             console.log(ref.getAuth())
             $scope.name = ref.getAuth().facebook.displayName
-            // $scope.$apply()
+            authData = ref.getAuth()
+
+            setFirebaseThing(authData)
         }
     // }, false)
-
 })
 
 
