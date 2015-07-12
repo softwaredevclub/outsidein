@@ -76,8 +76,7 @@ angular.module('starter.controllers', [])
 
             console.log(questions)
 
-            // Do yo magic here peter
-            
+            $scope.questions = questions
         })
     }
 
