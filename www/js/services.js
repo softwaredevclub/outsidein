@@ -59,7 +59,7 @@ angular.module('starter.services', [])
                         day = 'today'
                     }
 
-                    var answer = "According to weather underground, "
+                    var answer = "According to Weather Underground, "
                     if(matches(q, [['wind', 'windy', 'breeze']])) {
                         answer = answer + ' the wind speed should be ' + forecast.simpleforecast.forecastday[i].avewind.mph + ' mph ' + day + '.'
                     } else if(matches(q, [['jacket', 'shorts', 'wear', 'jeans', 'pants', 'sweater', 'shirt']])) {
