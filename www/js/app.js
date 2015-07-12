@@ -54,6 +54,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         }
     })
 
+    .state('tab.post', {
+        url: '/post',
+        views: {
+            'tab-post': {
+                templateUrl: 'templates/tab-post.html',
+                controller: 'PostCtrl'
+            }
+        }
+    })
+
     .state('tab.home', {
         url: '/home',
         views: {
