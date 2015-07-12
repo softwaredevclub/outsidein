@@ -118,7 +118,7 @@ angular.module('starter.controllers', [])
 .controller('ReplyCtrl', function($scope, $rootScope) {
 
 })
-.controller('PostCtrl', function($scope, $rootScope, $firebaseObject) {
+.controller('PostCtrl', function($scope, $rootScope, $firebaseObject, $ionicPopup) {
     if(!$rootScope.uid)
         $rootScope.uid = window.localStorage['uid']
 
@@ -132,6 +132,15 @@ angular.module('starter.controllers', [])
             timestamp: Date.now()
         }
         ref.push(post)
+        var alertPopup = $ionicPopup.alert({
+          title: 'Success',
+          template: 'Your question was sent!',
+          okType: 'blue'
+
+        });
+        alertPopup.then(function(res) {
+          console.log('Thanks!');
+        });
 
         $scope.post.content = ""
     }
