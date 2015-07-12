@@ -103,7 +103,7 @@ angular.module('starter.controllers', [])
             //questions.reverse() // newest first
             for (var i = 0; i < questions.length; i++) {
               questions[i].points = 0;
-              if (questions[i].user == ref.getAuth().facebook.displayName) {
+              if (questions[i].userName == ref.getAuth().facebook.displayName) {
                 questions[i].points += 200;
               }
               if (questions[i].sticky) {

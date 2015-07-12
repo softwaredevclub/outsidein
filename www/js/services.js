@@ -74,28 +74,28 @@ angular.module('starter.services', [])
 
                         answer = 'It will be ' + condition + ' and ' + temp + ' degrees ' + day + ', so '
                         if(temp < 57) {
-                            answer = answer + 'make sure to wear long pants and bring a jacket'
+                            answer = answer + 'make sure to wear long pants and bring a jacket.'
                         } else {
-                            answer = answer + 'dress for warm weather, but bring a jacket because it could get cold tonight'
+                            answer = answer + 'dress for warm weather, but bring a jacket because it could get cold tonight.'
                         }
                     } else if(matches(q, [['rain', 'rainy', 'umbrella', 'poncho', 'raincoat']])) {
                         var condition = forecast.simpleforecast.forecastday[i].conditions.toLowerCase()
                         if(condition == 'rain' || condition == 'showers' || condition == 'rainy' || condition == 'drizzle') {
-                            answer = 'It will rain ' + day + ', so make sure to bring rain gear'
+                            answer = 'It will rain ' + day + ', so make sure to bring rain gear!'
                         } else {
-                            answer = answer + ' it will be ' + condition + ' ' + day + ', so need for rain gear!'
+                            answer = answer + ' It will be ' + condition + ' ' + day + ', so no need for rain gear!'
                         }
                     } else if(matches(q, [['temperature', 'hot', 'cold', 'warm', 'freezing', 'chilly']])) {
                         var low = forecast.simpleforecast.forecastday[i].low.fahrenheit
                         var high = forecast.simpleforecast.forecastday[i].high.fahrenheit
 
-                        answer = 'The low is ' + low + ' degrees and the high is ' + high + ' degrees'
+                        answer = 'The low is ' + low + ' degrees and the high is ' + high + ' degrees.'
                     } else {
                         if(day == 'tonight')
                             i = 1
                         else if(day == 'tomorrow')
                             i = 2
-                        answer = 'The weather forecast for ' + day + ' is: ' + forecast.txt_forecast.forecastday[i].fcttext
+                        answer = 'The weather forecast for ' + day + ' is: ' + forecast.txt_forecast.forecastday[i].fcttext + '.'
                     }
                     answer = answer + ' (Powered by Weather Underground)'
                     addAnswer(answer, ref)
