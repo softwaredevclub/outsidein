@@ -59,17 +59,19 @@ angular.module('starter.controllers', [])
             var users = snapshot.val()
             console.log(users)
 
-            for(var key in users) {
-                if(!users.hasOwnProperty(key))
+            for(var userKey in users) {
+                if(!users.hasOwnProperty(userKey))
                     continue
 
-                var user = users[key]
+                var user = users[userKey]
 
-                for(var key2 in user.questions) {
-                    if(!user.questions.hasOwnProperty(key2))
+                for(var questionKey in user.questions) {
+                    if(!user.questions.hasOwnProperty(questionKey))
                         continue
 
-                    var question = user.questions[key2]
+                    var question = user.questions[questionKey]
+                    question.userKey = userKey
+                    question.questionKey = questionKey
                     if(!question.answers)
                         question.answers = []
                     questions.push(question)
@@ -84,11 +86,35 @@ angular.module('starter.controllers', [])
         })
     }
 
+    var getQuestionRef = function(question) {
+        return ref.child('/users/' + question.userKey + '/questions/' + question.questionKey)
+    }
+
     //TODO: FOR NICHOLAS
-    $scope.saveQuestion = function(question){}
-    $scope.viewAnswers = function(question){}
-    $scope.voteUP = function(question){}
-    $scope.voteDown = function(question){}
+    $scope.saveQuestion = function(question){
+        console.log('SAVE!', question)
+    }
+    $scope.viewAnswers = function(question){
+        console.log('VIEW!')
+    }
+    $scope.voteUp = function(question){
+        console.log('UP!')
+        if(window.localStorage[question.userKey + question.questionKey])
+            return
+        getQuestionRef(question).update({
+            "score": question.score + 1
+        })
+        window.localStorage[question.userKey + question.questionKey] = true
+    }
+    $scope.voteDown = function(question){
+        console.log('DOWN!')
+        if(window.localStorage[question.userKey + question.questionKey])
+            return
+        getQuestionRef(question).update({
+            "score": question.score - 1
+        })
+        window.localStorage[question.userKey + question.questionKey] = true
+    }
 
     // document.addEventListener("deviceready", function() {
         if(!ref.getAuth()) {
