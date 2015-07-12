@@ -18,19 +18,20 @@
       on-refresh="doRefresh()">
     </ion-refresher>
     <ion-list>
-      <ion-item class="ion-text-wrap lighten no-padding">
+      <ion-item class="ion-text-wrap lighten no-padding" ng-repeat="question in questions">
         <div class="row no-padding">
           <div class="col col-7 col-center no-padding">
             <button style="display:block; margin: 0 auto;" class="button button-icon icon ion-ios-star" ng-click="unsaveQuestion(question)"></button>
           </div>
           <div class="col col-75 col-offset-7 col-center no-padding" ng-click="viewAnswers(question)">
-            <p style="padding-bottom: 3%" class = "home-list-p"><strong>test question</strong></p>
-            <p style="color: #c54e51">40 answers</p>
+            <p style="padding-bottom: 3%" class = "home-list-p"><strong>{{question.content}}</strong></p>
+            <p style="color: #c54e51">{{question.userName}} | <strong>{{question.answers.length}} answers</strong>&nbsp;
+                <img src="img/arrow.png" style="position: relative; top: 3.25px" /></p>
           </div>
           <div class="col col-center no-padding">
             <!-- to preserve spacing -->
             <button style="display: block; margin: 0 auto;" class="button button-icon icon ion-chevron-up invisible"></button>
-            <div style="display:block; margin: 0 auto;" class="score">25</div>
+            <div style="display:block; margin: 0 auto;" class="score">{{question.score}}</div>
             <button style="display: block; margin: 0 auto;" class="button button-icon icon ion-chevron-down invisible"></button>
           </div>
         </div>
