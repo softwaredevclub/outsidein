@@ -96,14 +96,14 @@ angular.module('starter.services', [])
         return true
     }
 
-    var addAnswer = function(answer, ref) {
+    var addAnswer = function(answer, ref, weather) {
         var aRef = ref.child('/answers')
         var a = {
             content: answer,
             score: 0,
             timestamp: Date.now(),
             user: 'Robo Dave',
-            weather: true
+            weather: weather
         }
         aRef.push(a)
     }
@@ -139,6 +139,12 @@ angular.module('starter.services', [])
             }
 
             console.log('top food', top.food)
+
+            if(!top.food)
+                return
+
+            var answer = "Hungry? I suggest you check out " + top.food[0] + ", serving " + top.food[1].toLowerCase() + "."
+            addAnswer(answer, ref, false)
 
         }
     }
@@ -210,7 +216,7 @@ angular.module('starter.services', [])
                         answer = 'The weather forecast for ' + day + ' is: ' + forecast.txt_forecast.forecastday[i].fcttext + '.'
                     }
                     answer = answer + ' (Powered by Weather Underground)'
-                    addAnswer(answer, ref)
+                    addAnswer(answer, ref, true)
                 }).error(function(data, status, headers, config) {
                     console.log('oh no', data)
                 })
