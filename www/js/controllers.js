@@ -51,6 +51,36 @@ angular.module('starter.controllers', [])
         })
     }
 
+    var doShit = function() {
+        console.log('doing shit')
+        var users = ref.child('/users')
+        users.on('value', function(snapshot) {
+            var questions = []
+            var users = snapshot.val()
+            console.log(users)
+
+            for(var key in users) {
+                if(!users.hasOwnProperty(key))
+                    continue
+
+                var user = users[key]
+
+                for(var key2 in user.questions) {
+                    if(!user.questions.hasOwnProperty(key2))
+                        continue
+
+                    var question = user.questions[key2]
+                    questions.push(question)
+                }
+            }
+
+            console.log(questions)
+
+            // Do yo magic here peter
+            
+        })
+    }
+
     // document.addEventListener("deviceready", function() {
         if(!ref.getAuth()) {
             console.log('not logged in')
@@ -65,6 +95,7 @@ angular.module('starter.controllers', [])
                     window.localStorage['uid'] = authData.uid
 
                     setFirebaseThing(authData)
+                    doShit()
                 }
             })
         } else {
@@ -76,6 +107,7 @@ angular.module('starter.controllers', [])
             window.localStorage['uid'] = authData.uid
 
             setFirebaseThing(authData)
+            doShit()
         }
     // }, false)
 })
