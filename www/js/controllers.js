@@ -27,7 +27,7 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('HomeCtrl', function($scope, $rootScope, $firebaseObject, $firebaseAuth, $timeout, $state) {
+.controller('HomeCtrl', function($scope, $rootScope, $firebaseObject, $firebaseAuth, $timeout, $state, $ionicPopup) {
     var ref = new Firebase('https://outside-in.firebaseio.com/')
 
     var auth = $firebaseAuth(ref);
@@ -213,6 +213,27 @@ angular.module('starter.controllers', [])
             else
                 question.hidden = true
         }
+    }
+
+    $scope.saveAnswer = function(question, answer) {
+        console.log(ref.getAuth())
+        var aRef = ref.child('/users/' + question.userKey + '/questions/' + question.questionKey + '/answers')
+        var a = {
+            content: answer.content,
+            score: 0,
+            timestamp: Date.now(),
+            user: ref.getAuth().facebook.displayName
+        }
+        aRef.push(a)
+        var alertPopup = $ionicPopup.alert({
+          title: 'Success',
+          template: 'Your answer was sent!',
+          okType: 'blue'
+
+        })
+        alertPopup.then(function(res) {
+          console.log('yah')
+        })
     }
 })
 
