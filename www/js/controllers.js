@@ -173,7 +173,7 @@ angular.module('starter.controllers', [])
     $scope.voteUpAnswer = function(answer){}
     $scope.voteDownAnswer = function(answer){}
 
-    // document.addEventListener("deviceready", function() {
+    var loginStuff = function() {
         if(!ref.getAuth()) {
             console.log('not logged in')
 
@@ -201,7 +201,16 @@ angular.module('starter.controllers', [])
             setFirebaseThing(authData)
             doShit()
         }
-    // }, false)
+    }
+
+    var device = 'web' // yeah change this when building for device
+    if(device == 'android' || device == 'ios') {
+        console.log('is')
+        document.addEventListener("deviceready", loginStuff, false)
+    } else {
+        console.log('not')
+        loginStuff()
+    }
 
     $scope.search = function(query) {
         var keywords = query.split(' ')

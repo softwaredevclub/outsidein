@@ -21,11 +21,11 @@
     </feature>
     <name>outsidein</name>
     <description>
-        In which the good people share real-time bits of advice based on their real-time experiences at OutsideLands.
+        In which the good people share real-time bits of advice based on their real-time experiences at Outside Lands.
         Using collective knowledge to make the festival an even better time for all!
     </description>
     <author email="nkang@transplantnet.org" href="https://github.com/softwaredevclub/outsidein">
-      Nicholas Egan, Julia Lu, Nikki Kang and Peter Baumbacher
+      Nicholas Egan, Julia Lu, Nikki Kang, and Peter Baumbacher
     </author>
     <content src="index.html" />
     <allow-navigation href="*" />

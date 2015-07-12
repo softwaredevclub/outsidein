@@ -1,1 +1,57 @@
 /* Empty. Add your own CSS if you like */
+p.home-list-p {
+  white-space: normal;
+}
+
+.scroll-content {
+   background: url(../img/background.png);
+   background-repeat: no-repeat;
+   background-size: contain;
+   background-size: 100% 100%;
+
+   foreground: url(.../img/topbackground.png);
+ }
+
+ .red{
+   color:#d73e44;
+ }
+
+ .green{
+   color:#41907e;
+ }
+
+
+.score {
+  text-align: center;
+  font-size: 150%;
+  font-weight: bold;
+}
+.score-a {
+  text-align: center;
+  font-size: 110%;
+  font-weight: bold;
+}
+.lighten{
+  background-color: rgba(0,0,0,0);
+}
+.blue{
+  background-color:#6dcad6;
+}
+
+.no-padding {
+  padding: 0px !important;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.hidden {
+  display:none;
+}
+
+.answers {
+background-color: #e2d1be;
+border-bottom: 1.5 solid #ffedd5;
+
+}

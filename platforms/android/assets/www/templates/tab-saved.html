@@ -1,0 +1,44 @@
+<ion-view view-title="Saved">
+
+
+
+  <ion-header-bar class="bar bar-header item-input-inset blue">
+    <label class="item-input-wrapper">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" placeholder="Search" ng-model="query" ng-change="search(query)">
+    </label>
+    <button class="button button-clear button-light">Go</button>
+  </ion-header-bar>
+
+  <img ng-src="img/topbackground.png" class="disable-user-behavior" style="position: fixed; bottom:30px; z-index:1000">
+
+  <ion-content>
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="doRefresh()">
+    </ion-refresher>
+    <ion-list>
+      <ion-item class="ion-text-wrap lighten no-padding" ng-repeat="question in questions" ng-hide="question.hidden">
+        <div class="row no-padding">
+          <div class="col col-7 col-center no-padding">
+            <button style="display:block; margin: 0 auto;" class="button button-icon icon ion-ios-star" ng-click="unsaveQuestion(question)"></button>
+          </div>
+          <div class="col col-75 col-offset-7 col-center no-padding" ng-click="viewAnswers(question)">
+            <p style="padding-bottom: 3%" class = "home-list-p"><strong>{{question.content}}</strong></p>
+            <p style="color: #c54e51">{{question.userName}} | <strong>{{question.answers.length}} answers</strong>&nbsp;
+                <img src="img/arrow.png" style="position: relative; top: 3.25px" /></p>
+          </div>
+          <div class="col col-center no-padding">
+            <!-- to preserve spacing -->
+            <button style="display: block; margin: 0 auto;" class="button button-icon icon ion-chevron-up invisible"></button>
+            <div style="display:block; margin: 0 auto;" class="score">{{question.score}}</div>
+            <button style="display: block; margin: 0 auto;" class="button button-icon icon ion-chevron-down invisible"></button>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+
+
+</ion-view>
