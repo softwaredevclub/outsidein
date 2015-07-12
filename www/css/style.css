@@ -12,6 +12,13 @@ p.home-list-p {
    foreground: url(.../img/topbackground.png);
  }
 
+ .red{
+   color:#d73e44;
+ }
+
+ .green{
+   color:#41907e;
+ }
 
 
 .score {
