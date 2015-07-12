@@ -144,6 +144,9 @@ angular.module('starter.controllers', [])
     }
     $scope.viewAnswers = function(question){
         console.log('VIEW!')
+        for (i in $scope.questions) {
+          $scope.questions[i].showAnswers = false;
+        }
         question.showAnswers = !question.showAnswers
     }
     $scope.voteUp = function(question){
