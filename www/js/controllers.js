@@ -56,6 +56,7 @@ angular.module('starter.controllers', [])
     var doShit = function() {
         console.log('doing shit')
         var users = ref.child('/users')
+
         users.on('value', function(snapshot) {
             var questions = []
             var users = snapshot.val()
@@ -89,10 +90,27 @@ angular.module('starter.controllers', [])
                     questions.push(question)
                 }
             }
+            //questions is an array first
 
-            questions.reverse() // newest first
+            //questions.reverse() // newest first
+            for (var i = 0; i < questions.length; i++) {
+              questions[i].points = 0;
+              if (questions[i].user == ref.getAuth().facebook.displayName) {
+                questions[i].points += 200;
+              }
+              if (questions[i].sticky) {
+
+                questions[i].points += 100;
+              }
+              questions[i].points += questions[i].score;
+              questions[i].points += i/(questions.length/10);
+            }
+            //order by points
+            questions.sort(function(a, b){
+              return b.points-a.points
+})
+
             console.log(questions)
-
             $scope.questions = questions
         })
     }
