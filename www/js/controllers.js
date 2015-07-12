@@ -84,6 +84,13 @@ angular.module('starter.controllers', [])
                     if(!question.answers)
                         question.answers = {}
                     question.numAnswers = Object.keys(question.answers).length
+                    for(key in question.answers) {
+                        var answer = question.answers[key]
+                        answer.answerKey = key
+                        answer.up = window.localStorage[question.questionKey + answer.answerKey + 'up'] || false
+                        answer.down = window.localStorage[question.questionKey + answer.answerKey + 'down'] || false
+                    }
+
                     if(!window.localStorage['saved'] || window.localStorage['saved'].indexOf(questionKey) == -1)
                         question.star = 'ion-ios-star-outline'
                     else
@@ -118,6 +125,10 @@ angular.module('starter.controllers', [])
 
     var getQuestionRef = function(question) {
         return ref.child('/users/' + question.userKey + '/questions/' + question.questionKey)
+    }
+
+    var getAnswerRef = function(question, answer) {
+        return ref.child('/users/' + question.userKey + '/questions/' + question.questionKey + '/answers/' + answer.answerKey)
     }
 
     //TODO: FOR NICHOLAS
@@ -170,8 +181,24 @@ angular.module('starter.controllers', [])
         window.localStorage[question.userKey + question.questionKey + 'down'] = true
         $state.go($state.current, {}, {reload: true})
     }
-    $scope.voteUpAnswer = function(answer){}
-    $scope.voteDownAnswer = function(answer){}
+    $scope.voteUpAnswer = function(question, answer){
+        if(window.localStorage[question.questionKey + answer.answerKey + 'up'] || window.localStorage[question.questionKey + answer.questionKey + 'down'])
+            return
+        getAnswerRef(question, answer).update({
+            "score": answer.score + 1
+        })
+        answer.up = true
+        window.localStorage[question.questionKey + answer.answerKey + 'up'] = true
+    }
+    $scope.voteDownAnswer = function(question, answer){
+        if(window.localStorage[question.questionKey + answer.answerKey + 'up'] || window.localStorage[question.questionKey + answer.questionKey + 'down'])
+            return
+        getAnswerRef(question, answer).update({
+            "score": answer.score - 1
+        })
+        answer.down = true
+        window.localStorage[question.questionKey + answer.answerKey + 'down'] = true
+    }
 
     var loginStuff = function() {
         if(!ref.getAuth()) {
@@ -277,11 +304,17 @@ angular.module('starter.controllers', [])
     $scope.questions = JSON.parse(window.localStorage['saved']) || []
 
     $scope.unsaveQuestion = function(question){
+        console.log(window.localStorage['saved'])
         window.localStorage['saved'] = window.localStorage['saved'].replace(JSON.stringify(question) + ',', '')
         window.localStorage['saved'] = window.localStorage['saved'].replace(JSON.stringify(question), '')
         $scope.questions = JSON.parse(window.localStorage['saved'])
     }
-    $scope.viewAnswers = function(question){}
+    $scope.viewAnswers = function(question){
+        for (i in $scope.questions) {
+          $scope.questions[i].showAnswers = false;
+        }
+        question.showAnswers = !question.showAnswers
+    }
 
     $scope.doRefresh = function() {
         $state.go($state.current, {}, {reload: true})

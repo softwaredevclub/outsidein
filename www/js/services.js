@@ -25,7 +25,8 @@ angular.module('starter.services', [])
             content: answer,
             score: 0,
             timestamp: Date.now(),
-            user: 'Robo Dave'
+            user: 'Robo Dave',
+            weather: true
         }
         aRef.push(a)
     }
@@ -59,9 +60,9 @@ angular.module('starter.services', [])
                         day = 'today'
                     }
 
-                    var answer = "According to weather underground, "
+                    var answer = ''
                     if(matches(q, [['wind', 'windy', 'breeze']])) {
-                        answer = answer + ' the wind speed should be ' + forecast.simpleforecast.forecastday[i].avewind.mph + ' mph ' + day
+                        answer = 'The wind speed should be ' + forecast.simpleforecast.forecastday[i].avewind.mph + ' mph ' + day
                     } else if(matches(q, [['jacket', 'shorts', 'wear', 'jeans', 'pants', 'sweater', 'shirt']])) {
                         var temp
                         if(low)
@@ -71,7 +72,7 @@ angular.module('starter.services', [])
 
                         var condition = forecast.simpleforecast.forecastday[i].conditions.toLowerCase()
 
-                        answer = answer + ' it will be ' + condition + ' and ' + temp + ' degrees ' + day + ', so '
+                        answer = 'It will be ' + condition + ' and ' + temp + ' degrees ' + day + ', so '
                         if(temp < 57) {
                             answer = answer + 'make sure to wear long pants and bring a jacket'
                         } else {
@@ -80,7 +81,7 @@ angular.module('starter.services', [])
                     } else if(matches(q, [['rain', 'rainy', 'umbrella', 'poncho', 'raincoat']])) {
                         var condition = forecast.simpleforecast.forecastday[i].conditions.toLowerCase()
                         if(condition == 'rain' || condition == 'showers' || condition == 'rainy' || condition == 'drizzle') {
-                            answer = answer + ' it will rain ' + day + ', so make sure to bring rain gear'
+                            answer = 'It will rain ' + day + ', so make sure to bring rain gear'
                         } else {
                             answer = answer + ' it will be ' + condition + ' ' + day + ', so need for rain gear!'
                         }
@@ -88,15 +89,15 @@ angular.module('starter.services', [])
                         var low = forecast.simpleforecast.forecastday[i].low.fahrenheit
                         var high = forecast.simpleforecast.forecastday[i].high.fahrenheit
 
-                        answer = answer + ' the low is ' + low + ' degrees and the high is ' + high + ' degrees'
+                        answer = 'The low is ' + low + ' degrees and the high is ' + high + ' degrees'
                     } else {
                         if(day == 'tonight')
                             i = 1
                         else if(day == 'tomorrow')
                             i = 2
-                        answer = answer + ' the weather forecast for ' + day + ' is: ' + forecast.txt_forecast.forecastday[i].fcttext
+                        answer = 'The weather forecast for ' + day + ' is: ' + forecast.txt_forecast.forecastday[i].fcttext
                     }
-
+                    answer = answer + ' (Powered by Weather Underground)'
                     addAnswer(answer, ref)
                 }).error(function(data, status, headers, config) {
                     console.log('oh no', data)

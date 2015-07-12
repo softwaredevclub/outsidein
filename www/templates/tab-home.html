@@ -54,9 +54,9 @@
         </div>
         <div class="col no-padding">
 
-          <button style="display: block; margin: 0 auto;" class="button button-icon icon ion-chevron-up" ng-click="voteUpAnswer(answer)" ng-class="{green: answer.up}"></button>
+          <button style="display: block; margin: 0 auto;" class="button button-icon icon ion-chevron-up" ng-click="voteUpAnswer(question, answer)" ng-class="{green: answer.up}"></button>
           <div class="score-a">{{answer.score}}</div>
-          <button style="display: block; margin: 0 auto;" class="button button-icon icon ion-chevron-down" ng-click="voteDownAnswer(answer)" ng-class="{red: question.down}"></button>
+          <button style="display: block; margin: 0 auto;" class="button button-icon icon ion-chevron-down" ng-click="voteDownAnswer(question, answer)" ng-class="{red: question.down}"></button>
         </div>
     </div>
       </ion-item>
