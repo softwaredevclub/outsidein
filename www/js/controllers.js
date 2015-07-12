@@ -86,14 +86,34 @@ angular.module('starter.controllers', [])
 })
 .controller('PostCtrl', function($scope, $rootScope) {
     // Called when the form is submitted
-    $scope.createPost = function(task) {
+    /* Nikki's shitty writing code below.
+var ref = new Firebase('https://outside-in.firebaseio.com')
+var qRef = ref.child("questions");
+qRef.set({
+alanisawesome: {
+date_of_birth: "June 23, 1912",
+full_name: "Alan Turing"
+},
+gracehop: {
+date_of_birth: "December 9, 1906",
+full_name: "Grace Hopper"
+}
+});
+var tstamp = Date.now();
+    $scope.createPost = function(post) {
       $scope.tasks.push({
         content: post.content
+        sticky:  false
+        uid: userID
+        timestamp: tstamp //convert this to readable date when presenting to user
+        score: 0
       });
       $scope.taskModal.hide();
       task.title = "";
     };
 })
+
+*/
 .controller('LoginCtrl', function($scope, $rootScope) {
     console.log('login')
 })

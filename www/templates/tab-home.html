@@ -15,12 +15,18 @@
     <!-- TODO: add ion-refresher -->
     <ion-list>
       <ion-item class="ion-text-wrap lighten">
-        <p class = "home-list-p">hello I wonder what happens if i add so much text that it finally has to wrap</p>
-        <div class="home-list-score">
-          <button class="button button-icon icon ion-chevron-up custom-arrow-icon"></button>
-          <div class="score">25</div>
-          <button class="button button-icon icon ion-chevron-down custom-arrow-icon"></button>
-        </div>
+        <div class="row">
+          <div class="col col-80">
+            <p class = "home-list-p">hello I wonder what happens if i add so much text that it finally has to wrap</p>
+            <p> another thing</p>
+          </div>
+          <div class="col">
+
+            <button style="display: block; margin: 0 auto;" class="button button-icon icon ion-chevron-up"></button>
+            <div class="score">25</div>
+            <button style="display: block; margin: 0 auto;" class="button button-icon arrow icon ion-chevron-down"></button>
+          </div>
+      </div>
       </ion-item>
     </ion-list>
   </ion-content>

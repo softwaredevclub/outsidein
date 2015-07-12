@@ -1,8 +1,6 @@
 /* Empty. Add your own CSS if you like */
 p.home-list-p {
-  width: 75%;
   white-space: normal;
-  float: left;
 }
 
 .scroll-content {
@@ -14,22 +12,12 @@ p.home-list-p {
 
  }
 
-div.home-list-score {
-  width: 25%;
-  float:left;
-}
 
-.custom-arrow {
-  font-size: 20px;
-}
 
 .score {
   text-align: center;
-  font-size: 200%;
-}
-
-button.custom-arrow-icon i:before {
-    text-align: center !important;
+  font-size: 150%;
+  font-weight: bold;
 }
 
 .lighten{
