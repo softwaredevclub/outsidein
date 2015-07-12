@@ -19,7 +19,9 @@ p.home-list-p {
   font-size: 150%;
   font-weight: bold;
 }
-
+.score-a {
+  font-size: 110%;
+}
 .lighten{
   background-color: rgba(0,0,0,0);
 }
@@ -40,6 +42,7 @@ p.home-list-p {
 }
 
 .answers {
-background-color: #f7e5cf
+background-color: #e2d1be;
+border-bottom: 1.5 solid #ffedd5;
 
 }
