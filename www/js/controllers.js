@@ -83,6 +83,7 @@ angular.module('starter.controllers', [])
 
                     if(!question.answers)
                         question.answers = {}
+                    question.numAnswers = Object.keys(question.answers).length
                     if(!window.localStorage['saved'] || window.localStorage['saved'].indexOf(questionKey) == -1)
                         question.star = 'ion-ios-star-outline'
                     else
@@ -277,7 +278,7 @@ angular.module('starter.controllers', [])
 .controller('ReplyCtrl', function($scope, $rootScope) {
 
 })
-.controller('PostCtrl', function($scope, $rootScope, $firebaseObject, $ionicPopup) {
+.controller('PostCtrl', function($scope, $rootScope, $firebaseObject, $ionicPopup, $http, Bot) {
     if(!$rootScope.uid)
         $rootScope.uid = window.localStorage['uid']
 
@@ -290,7 +291,7 @@ angular.module('starter.controllers', [])
             score: 0,
             timestamp: Date.now()
         }
-        ref.push(post)
+        var postRef = ref.push(post)
         var alertPopup = $ionicPopup.alert({
           title: 'Success',
           template: 'Your question was sent!',
@@ -301,6 +302,7 @@ angular.module('starter.controllers', [])
           console.log('Thanks!');
         });
 
+        Bot.bleepBloop(post, postRef, $http)
     }
 })
 
