@@ -24,7 +24,8 @@
           </div>
           <div class="col col-75 col-offset-7 col-center no-padding" ng-click="viewAnswers(question)">
             <p style="padding-bottom: 3%" class = "home-list-p"><strong>{{question.content}}</strong></p>
-            <p style="color: #c54e51">{{question.answers.length}} answers</p>
+            <p style="color: #c54e51">{{question.userName}} | <strong>{{question.answers.length}} answers</strong>&nbsp;
+                <img src="img/arrow.png" style="position: relative; top: 3.25px" /></p>
           </div>
           <div class="col col-center no-padding">
             <!-- to preserve spacing -->
