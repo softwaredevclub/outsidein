@@ -37,7 +37,7 @@
           </div>
       </div>
       <form ng-submit="createAnswer(answer)">
-        <div class="row no-padding answers">
+        <div class="row no-padding answers" ng-class="{hidden: !question.showAnswers}">
           <label class="item item-input" style="width:90%; float:left">
             <input type="text" placeholder="Submit an answer" ng-model="answer.content">
           </label>
