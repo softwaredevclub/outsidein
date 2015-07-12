@@ -36,7 +36,14 @@
             <button style="display: block; margin: 0 auto;" class="button button-icon arrow icon ion-chevron-down" ng-click="voteDown(question)" ng-class="{red: question.down}"></button>
           </div>
       </div>
-
+      <form ng-submit="createAnswer(answer)">
+        <div class="row no-padding answers" ng-class="{hidden: !question.showAnswers}">
+          <label class="item item-input" style="width:90%; float:left">
+            <input type="text" placeholder="Submit an answer" ng-model="answer.content">
+          </label>
+          <button type="submit" class="button blue">Done</button>
+        </div>
+      </form>
 
       <div class="row no-padding answers" ng-class="{hidden: !question.showAnswers}">
         <div class="col col-7 col-center no-padding">
