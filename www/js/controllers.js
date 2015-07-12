@@ -32,8 +32,12 @@ angular.module('starter.controllers', [])
 
     var auth = $firebaseAuth(ref);
 
+<<<<<<< Updated upstream
     // login with Facebook
     $scope.name = ""
+=======
+    $scope.doRefresh = function(){}; //needs to be filled in
+>>>>>>> Stashed changes
 
     var setFirebaseThing = function(authData) {
         var user = ref.child('/users/' + authData.uid)

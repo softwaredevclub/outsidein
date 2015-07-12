@@ -26,3 +26,7 @@ p.home-list-p {
 .blue{
   background-color:#6dcad6;
 }
+
+.no-padding{
+  padding: 0px !important;
+}
