@@ -34,3 +34,7 @@ p.home-list-p {
 .invisible {
   visibility: hidden;
 }
+
+.hidden {
+  display:none;
+}
