@@ -2,6 +2,12 @@
 p.home-list-p {
   white-space: normal;
 }
+.post-background{
+  background:url(../img/backgroundpost.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-size: 100% 100%;
+}
 
 .scroll-content {
    background: url(../img/background.png);
