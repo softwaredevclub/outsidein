@@ -75,7 +75,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     })
 
     .state('tab.saved', {
-        url: '/tab/saved',
+        url: '/saved',
         views: {
             'tab-saved': {
                 templateUrl: 'templates/tab-saved.html',
