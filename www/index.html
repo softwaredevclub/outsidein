@@ -3,6 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+        <!-- Enable all requests, inline styles, and eval() -->
+        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src * 'unsafe-inline' 'self' 'unsafe-eval'">
+
         <title></title>
 
         <link href="lib/ionic/css/ionic.css" rel="stylesheet">
@@ -31,7 +35,7 @@
         <!--
             The nav bar that will be updated as we navigate between views.
         -->
-        
+
         <!--
             The views will be rendered in the <ion-nav-view> directive below
             Templates are in the /templates folder (but you could also

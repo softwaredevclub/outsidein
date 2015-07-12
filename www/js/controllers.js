@@ -27,22 +27,34 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('HomeCtrl', function($scope, $rootScope, $firebaseObject, $firebaseAuth) {
+.controller('HomeCtrl', function($scope, $rootScope, $firebaseObject, $firebaseAuth, $timeout) {
     var ref = new Firebase('https://outside-in.firebaseio.com/')
 
     var auth = $firebaseAuth(ref);
+
     // login with Facebook
-    auth.$authWithOAuthPopup("facebook").then(function(authData) {
-        console.log("Logged in as:", authData.uid)
-    }).catch(function(error) {
-        console.log("Authentication failed:", error)
-    })
+    $scope.name = ""
 
+    // document.addEventListener("deviceready", function() {
+        if(!ref.getAuth()) {
+            console.log('not logged in')
 
-    console.log('hi')
-    if(!$rootScope.user) {
+            auth.$authWithOAuthPopup("facebook", function(error, authData) {
+                if(error) {
+                    console.log('failed')
+                } else {
+                    console.log(authData)
+                    $scope.name = authData.facebook.displayName
+                    // $scope.$apply()
+                }
+            })
+        } else {
+            console.log(ref.getAuth())
+            $scope.name = ref.getAuth().facebook.displayName
+            // $scope.$apply()
+        }
+    // }, false)
 
-    }
 })
 
 
