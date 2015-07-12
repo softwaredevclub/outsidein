@@ -38,24 +38,22 @@
       </div>
 
 
-      <!-- Answers content
-      <div class="row no-padding">
+      <div class="row no-padding answers">
         <div class="col col-7 col-center no-padding">
-          <button style="display:block; margin: 0 auto;" class="button button-icon icon ion-ios-star-outline" ng-click="saveQuestion(question)"></button>
+          <button style="display:block; margin: 0 auto;" class="button button-icon icon ion-ios-star-outline"></button>
         </div>
-        <div class="col col-75 col-offset-7 col-center no-padding" ng-click="viewAnswers(question)">
+        <div class="col col-75 col-offset-7 col-center no-padding">
           <p style="padding-bottom: 3%" class = "home-list-p"><strong>{{answer.content}}</strong></p>
 
-          <p style="color: #c54e51">{{answer.userName}} | <img src="img/arrow.png" style="position: relative; top: 3.25px" /> </p>
+          <p style="color: #c54e51"> {{answer.userName}} </p>
         </div>
         <div class="col no-padding">
 
-          <button style="display: block; margin: 0 auto;" class="button button-icon icon ion-chevron-up" ng-click="voteUp(question)"></button>
-          <div class="score">{{question.score}}</div>
-          <button style="display: block; margin: 0 auto;" class="button button-icon arrow icon ion-chevron-down" ng-click="voteDown(question)"></button>
+          <button style="display: block; margin: 0 auto;" class="button button-icon icon ion-chevron-up" ng-click="voteUp(answer)"></button>
+          <div class="score-a">{{answer.score}}</div>
+          <button style="display: block; margin: 0 auto;" class="button button-icon icon ion-chevron-down" ng-click="voteDown(answer)"></button>
         </div>
-
-    </div>-->
+    </div>
       </ion-item>
     </ion-list>
   </ion-content>
