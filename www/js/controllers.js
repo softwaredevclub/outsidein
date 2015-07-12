@@ -273,6 +273,42 @@ angular.module('starter.controllers', [])
     $scope.doRefresh = function() {
         $state.go($state.current, {}, {reload: true})
     }
+
+    $scope.search = function(query) {
+        var keywords = query.split(' ')
+        if(query.length == 0) {
+            for(var i=0;i<$scope.questions.length;i++)
+                $scope.questions[i].hidden = false
+            return
+        }
+
+        for(var i=0;i<$scope.questions.length;i++) {
+            var question = $scope.questions[i]
+            var tokens = question.content.split(' ')
+
+            var has = false
+            for(var j=0;j<tokens.length;j++) {
+                var token = tokens[j]
+
+                for(var k=0;k<keywords.length;k++) {
+                    var keyword = keywords[k]
+                    if(token.toLowerCase().indexOf(keyword.toLowerCase()) != -1) {
+                        has = true
+                        break;
+                    }
+                }
+
+                if(has)
+                    break;
+
+            }
+
+            if(has)
+                question.hidden = false
+            else
+                question.hidden = true
+        }
+    }
 })
 .controller('ReplyCtrl', function($scope, $rootScope) {
 
