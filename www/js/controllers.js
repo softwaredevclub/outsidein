@@ -27,14 +27,16 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('HomeCtrl', function($scope, $rootScope, $firebaseObject, $firebaseAuth, $timeout) {
+.controller('HomeCtrl', function($scope, $rootScope, $firebaseObject, $firebaseAuth, $timeout, $state) {
     var ref = new Firebase('https://outside-in.firebaseio.com/')
 
     var auth = $firebaseAuth(ref);
 
     // login with Facebook
     $scope.name = ""
-    $scope.doRefresh = function(){}; //needs to be filled in
+    $scope.doRefresh = function(){
+        $state.go($state.current, {}, {reload: true})
+    }; //needs to be filled in
 
     var setFirebaseThing = function(authData) {
         var user = ref.child('/users/' + authData.uid)
@@ -86,9 +88,8 @@ angular.module('starter.controllers', [])
                 }
             }
 
+            questions.reverse() // newest first
             console.log(questions)
-
-
 
             $scope.questions = questions
         })
@@ -130,7 +131,9 @@ angular.module('starter.controllers', [])
         getQuestionRef(question).update({
             "score": question.score + 1
         })
+        question.up = true
         window.localStorage[question.userKey + question.questionKey + 'up'] = true
+        $state.go($state.current, {}, {reload: true})
     }
     $scope.voteDown = function(question){
         if(window.localStorage[question.userKey + question.questionKey + 'down'] || window.localStorage[question.userKey + question.questionKey + 'up'])
@@ -138,7 +141,9 @@ angular.module('starter.controllers', [])
         getQuestionRef(question).update({
             "score": question.score - 1
         })
+        question.down = true
         window.localStorage[question.userKey + question.questionKey + 'down'] = true
+        $state.go($state.current, {}, {reload: true})
     }
 
     // document.addEventListener("deviceready", function() {
@@ -173,7 +178,7 @@ angular.module('starter.controllers', [])
 })
 
 
-.controller('SavedCtrl', function($scope, $rootScope) {
+.controller('SavedCtrl', function($scope, $rootScope, $state) {
     if(!window.localStorage['saved'])
         window.localStorage['saved'] = '[]'
     $scope.questions = JSON.parse(window.localStorage['saved']) || []
@@ -184,6 +189,10 @@ angular.module('starter.controllers', [])
         $scope.questions = JSON.parse(window.localStorage['saved'])
     }
     $scope.viewAnswers = function(question){}
+
+    $scope.doRefresh = function() {
+        $state.go($state.current, {}, {reload: true})
+    }
 })
 .controller('ReplyCtrl', function($scope, $rootScope) {
 
@@ -212,32 +221,7 @@ angular.module('starter.controllers', [])
           console.log('Thanks!');
         });
 
-        $scope.post.content = ""
     }
-
-    // var qRef = ref.child("questions");
-    // qRef.set({
-    // alanisawesome: {
-    // date_of_birth: "June 23, 1912",
-    // full_name: "Alan Turing"
-    // },
-    // gracehop: {
-    // date_of_birth: "December 9, 1906",
-    // full_name: "Grace Hopper"
-    // }
-    // });
-    // var tstamp = Date.now();
-    // $scope.createPost = function(post) {
-    //   $scope.tasks.push({
-    //     content: post.content
-    //     sticky:  false
-    //     uid: userID
-    //     timestamp: tstamp //convert this to readable date when presenting to user
-    //     score: 0
-    //   });
-    //   $scope.taskModal.hide();
-    //   task.title = "";
-    // };
 })
 
 .controller('LoginCtrl', function($scope, $rootScope) {
