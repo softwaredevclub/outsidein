@@ -1,6 +1,40 @@
-<ion-view>
+<ion-view view-title="Saved">
 
-  <div class="scroll-content">
-  <div>
 
-  </ion-view>
+
+  <ion-header-bar class="bar bar-header item-input-inset blue">
+    <label class="item-input-wrapper">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" placeholder="Search">
+    </label>
+    <button class="button button-clear button-light">Go</button>
+  </ion-header-bar>
+
+
+  <ion-content>
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="doRefresh()">
+    </ion-refresher>
+    <ion-list>
+      <ion-item class="ion-text-wrap lighten no-padding">
+        <div class="row no-padding">
+          <div class="col col-7 col-center no-padding">
+            <button style="display:block; margin: 0 auto;" class="button button-icon icon ion-ios-star" ng-click="saveQuestion(question)"></button>          </div>
+          <div class="col col-75 col-offset-7 col-center no-padding" ng-click="viewAnswers(question)">
+            <p style="padding-bottom: 3%" class = "home-list-p"><strong>test question</strong></p>
+            <p style="color: #c54e51">40 answers</p>
+          </div>
+          <div class="col col-center no-padding">
+
+            <div style="display:block; margin: 0 auto;" class="score">25</div>
+
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+
+
+</ion-view>
